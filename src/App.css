@@ -11,20 +11,15 @@ body{
   box-sizing: border-box;
   display: flex;
   border: 1px aqua solid;
-  width: 600px;
-  height: 600px;
+  width: 800px;
+  height: 800px;
   justify-content: center;
-}
-.col{
-  border: aqua solid;
 }
 .square{
   box-sizing: border-box;
   width: 37.5px;
   height: 37.5px;
-  border: 1px;
-  border-style: solid;
-  border-color: aqua;
+  border: 0.5px solid aqua;
 }
 
 .button{
