@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/etchaSketch/static/css/main.7f88ab18.css",
+    "main.js": "/etchaSketch/static/js/main.69e07cc6.js",
+    "static/js/787.fd63d7ff.chunk.js": "/etchaSketch/static/js/787.fd63d7ff.chunk.js",
+    "index.html": "/etchaSketch/index.html",
+    "main.7f88ab18.css.map": "/etchaSketch/static/css/main.7f88ab18.css.map",
+    "main.69e07cc6.js.map": "/etchaSketch/static/js/main.69e07cc6.js.map",
+    "787.fd63d7ff.chunk.js.map": "/etchaSketch/static/js/787.fd63d7ff.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7f88ab18.css",
+    "static/js/main.69e07cc6.js"
+  ]
+}

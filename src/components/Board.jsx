@@ -17,7 +17,7 @@ const Board = (props) => {
 
     function changeColor(e){
         let colour = '#282c34'
-        if(rainbowColour.current){
+        if(rainbowColour.current){  
             console.log(e.target.style.backgroundColor);
             colour = Math.floor(Math.random()*16777215).toString(16);
             e.target.style.background = '#'+colour
