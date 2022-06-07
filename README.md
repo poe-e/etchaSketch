@@ -1,3 +1,4 @@
-Paul Wasilewicz
+# Etch-a-Sketch
 
-Simple Etch-a-Sketch built with React. Demo right here https://guapomopo.github.io/etchaSketch/ 
+Simple Etch-a-Sketch built with ReactJS. 
+Demo right here https://guapomopo.github.io/etchaSketch/ 👀
