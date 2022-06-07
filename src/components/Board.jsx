@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 const Board = (props) => {
     const [board, setBoard] = useState([createBoard()]);
     const isDrawing = useRef(false);
+    const rainbowColour = useRef(false);
     const flexGridRef = useRef(null);
     let amountOfSquares = 16;
     let boxLength = 0;
@@ -14,18 +15,43 @@ const Board = (props) => {
         }
     }
 
+    function changeColor(e){
+        let colour = '#282c34'
+        if(rainbowColour.current){
+            colour = Math.floor(Math.random()*16777215).toString(16);
+            e.target.style.background = '#'+colour
+        }
+        else{
+            e.target.style.background = '#282c34';
+        }
+      }
+
+    function toggleRainbow(e){
+        console.log('Here')
+        if(rainbowColour.current){
+            e.target.style.background = '#D3D3D3'
+        }
+        else{
+            e.target.style.background = '#e4e6ec'
+        }
+    }
     
     function changeSquares(e){
+        let buttons = document.getElementsByClassName('buttonSize');
+        for(const i of buttons){
+            i.style.background = '#e4e6ec';
+        }
+        e.target.style.background = '#D3D3D3';
+
         boxLength = flexGridRef.current.clientHeight/parseInt(e.target.id);
         amountOfSquares = parseInt(e.target.id);
         let newBoard = [];
         for(let i = 0; i<amountOfSquares; i++){
             let boardRow = [];
             for(let j = 0; j<amountOfSquares; j++){
-                boardRow.push(<div draggable="false" className="square" style={{height:boxLength, width:boxLength}} onDrag={()=>{isDrawing.current = false;}} onClick={(e)=>{props.changeColor(e)}} onMouseDown={(e)=>{e.preventDefault();isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseOver={(e)=>{
-                    console.log(isDrawing.current);
+                boardRow.push(<div draggable="false" className="square" style={{height:boxLength, width:boxLength}} onDrag={()=>{isDrawing.current = false;}} onClick={(e)=>{changeColor(e)}} onMouseDown={(e)=>{e.preventDefault();isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseOver={(e)=>{
                     if(isDrawing.current){
-                        props.changeColor(e)
+                        changeColor(e)
                     }
                 }} key={i.toString()+j.toString()}></div>)
             }
@@ -40,9 +66,9 @@ const Board = (props) => {
         for(let i = 0; i<16; i++){
             let boardRow = [];
             for(let j = 0; j<16; j++){
-                boardRow.push(<div className="square" style={{height:'50px', width:'50px'}} onDrag={()=>{isDrawing.current = false;}}  onClick={(e)=>{props.changeColor(e)}} onMouseDown={(e)=>{e.preventDefault(); isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseEnter={(e)=>{
+                boardRow.push(<div className="square" style={{height:'50px', width:'50px'}} onDrag={()=>{isDrawing.current = false;}}  onClick={(e)=>{changeColor(e)}} onMouseDown={(e)=>{e.preventDefault(); isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseEnter={(e)=>{
                     if(isDrawing.current){
-                        props.changeColor(e)
+                        changeColor(e);
                     }
                 }} key={i.toString()+j.toString()}></div>)
             }
@@ -64,9 +90,10 @@ const Board = (props) => {
                     Sketch
                 </div>
                 <div className='buttonGroup'>
-                    <div className='button' id='16' onClick={(e)=>{changeSquares(e); resetSquares();}}>16x16</div>
-                    <div className='button' id='64' onClick={(e)=>{changeSquares(e); resetSquares();}}>64x64</div>
-                    <div className='button' id='100' onClick={(e)=>{changeSquares(e); resetSquares();}}>100x100</div>
+                    <div className='buttonSize' id='16' onClick={(e)=>{changeSquares(e); resetSquares();}}>16x16</div>
+                    <div className='buttonSize' id='64' onClick={(e)=>{changeSquares(e); resetSquares();}}>64x64</div>
+                    <div className='buttonSize' id='100' onClick={(e)=>{changeSquares(e); resetSquares();}}>100x100</div>
+                    <div className='button' id='rainbow' onClick={(e)=>{rainbowColour.current=!rainbowColour.current; toggleRainbow(e)}}>Rainbow</div>
                     <div className='button' id='reset' onClick={()=>{resetSquares();}}>Clear</div>
                 </div>
             </div>
