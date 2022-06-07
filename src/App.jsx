@@ -5,14 +5,12 @@ import Board from './components/Board'
 function App() {
 
   function changeColor(e){
-    e.target.style.background = 'orange';
+    e.target.style.background = '#282c34';
   }
 
   return (
     <div>
-      <div className='container'>
         <Board changeColor={changeColor} />
-      </div>
     </div>
   );
 }

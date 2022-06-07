@@ -1,16 +1,45 @@
 
 body{
-  background-color: #282c34;
+  background-color: #e4e6ec;
 }
-.container{
+.outerContainer{
   display: flex;
+  height: 1000px;
+  justify-content: center;
   align-items: center;
+
+}
+.innerContainer{
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  margin-bottom: 100px;
+}
+.buttonGroup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.title{
+  display: flex;
+  color: #282c34;
+  font-size: 40px;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+}
+.gridBox{
+  display: flex;
   justify-content: center;
 }
 .flex-grid{
   box-sizing: border-box;
   display: flex;
-  border: 1px aqua solid;
+  /* border: 1px rgb(11, 12, 12) solid; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #eaeef1;
   width: 800px;
   height: 800px;
   justify-content: center;
@@ -19,35 +48,19 @@ body{
   box-sizing: border-box;
   width: 37.5px;
   height: 37.5px;
-  border: 0.5px solid aqua;
+  /* border: 0.5px solid aqua; */
 }
 
 .button{
-  border: 1px solid aqua;
-  background-color: aqua;
+  font-size: 20px;
+  font-weight: 100;
+  border: 1px solid #282c34;;
+  background-color: eaeef1;
   height: 30px;
-  width: 70px;
+  width: 200px;
   color: #282c34;
   border-radius: 10px;
   text-align: center;
   margin-right: 100px;
   margin: 5px;
 }
-/*
-.fullBoard{
-  display: flex;
-  height: 353px;
-}
-.board{
-  display: flex;
-  justify-content: center;
-  border: 1px;
-  border-style: solid;
-  border-color: aqua;
-}
-.board-row{
-  width: 20px;
-  height: 20px;
-}
-
-*/

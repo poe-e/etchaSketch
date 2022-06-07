@@ -10,7 +10,7 @@ const Board = (props) => {
     function resetSquares(){
         let squares = document.getElementsByClassName('square');
         for(let i = 0;i<squares.length;i++){
-            squares[i].style.background = 'black'
+            squares[i].style.background = '#eaeef1'
         }
     }
 
@@ -22,7 +22,7 @@ const Board = (props) => {
         for(let i = 0; i<amountOfSquares; i++){
             let boardRow = [];
             for(let j = 0; j<amountOfSquares; j++){
-                boardRow.push(<div draggable="false" className="square" style={{height:boxLength, width:boxLength}}  onClick={(e)=>{props.changeColor(e)}} onMouseDown={()=>{isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseOver={(e)=>{
+                boardRow.push(<div draggable="false" className="square" style={{height:boxLength, width:boxLength}} onDrag={()=>{isDrawing.current = false;}} onClick={(e)=>{props.changeColor(e)}} onMouseDown={(e)=>{e.preventDefault();isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseOver={(e)=>{
                     console.log(isDrawing.current);
                     if(isDrawing.current){
                         props.changeColor(e)
@@ -40,8 +40,7 @@ const Board = (props) => {
         for(let i = 0; i<16; i++){
             let boardRow = [];
             for(let j = 0; j<16; j++){
-                boardRow.push(<div className="square" style={{height:'50px', width:'50px'}}  onClick={(e)=>{props.changeColor(e)}} onMouseDown={()=>{isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseEnter={(e)=>{
-                    console.log(isDrawing.current);
+                boardRow.push(<div className="square" style={{height:'50px', width:'50px'}} onDrag={()=>{isDrawing.current = false;}}  onClick={(e)=>{props.changeColor(e)}} onMouseDown={(e)=>{e.preventDefault(); isDrawing.current=true}} onMouseUp={()=>{isDrawing.current=false}} onMouseEnter={(e)=>{
                     if(isDrawing.current){
                         props.changeColor(e)
                     }
@@ -51,21 +50,30 @@ const Board = (props) => {
         }
         return starterBoard;
     }
-    function testFunc(e){
-        console.log(e);
-        console.log(e.target)
-    }
 
     return(
-        <div>
-            <div>
-                <div className='button' id='reset' onClick={()=>{resetSquares()}}>Reset</div>
-                <div className='button' id='16' onClick={(e)=>{changeSquares(e);}}>16x16</div>
-                <div className='button' id='64' onClick={(e)=>{changeSquares(e);}}>64x64</div>
-                <div className='button' id='100' onClick={(e)=>{changeSquares(e); }}>100x100</div>
+        <div className='outerContainer'>
+            <div className='innerContainer'>
+                <div className='title'>
+                    Etch
+                </div>
+                <div className='title'>
+                    -a-
+                </div>
+                <div className='title'>
+                    Sketch
+                </div>
+                <div className='buttonGroup'>
+                    <div className='button' id='16' onClick={(e)=>{changeSquares(e); resetSquares();}}>16x16</div>
+                    <div className='button' id='64' onClick={(e)=>{changeSquares(e); resetSquares();}}>64x64</div>
+                    <div className='button' id='100' onClick={(e)=>{changeSquares(e); resetSquares();}}>100x100</div>
+                    <div className='button' id='reset' onClick={()=>{resetSquares();}}>Clear</div>
+                </div>
             </div>
-            <div ref={flexGridRef} className="flex-grid" onClick={(e)=>{testFunc(e)}}>
-                {board}
+            <div className='gridBox'>
+                <div ref={flexGridRef} className="flex-grid">
+                    {board}
+                </div>
             </div>
         </div>
     );
